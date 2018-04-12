@@ -3,17 +3,17 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <AssemblyName>HomeKit.ConsoleApp</AssemblyName>
-    <RootNamespace>HomeKit.ConsoleApp</RootNamespace>
+    <AssemblyName>ConsoleApp</AssemblyName>
+    <RootNamespace>ConsoleApp</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Makaretu.Dns.Multicast" Version="0.3.1" />
-    <PackageReference Include="Mono.Zeroconf" Version="0.9.0" />
+    <PackageReference Include="MessageWire" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Mono.Zeroconf\src\Mono.Zeroconf.Providers.Bonjour\Mono.Zeroconf.Providers.Bonjour.csproj" />
+    <ProjectReference Include="..\Eneter.SecureRemotePassword\v1.0.0\src\Eneter.SecureRemotePassword\Eneter.SecureRemotePassword45.csproj" />
     <ProjectReference Include="..\Mono.Zeroconf\src\Mono.Zeroconf\Mono.Zeroconf.csproj" />
   </ItemGroup>
 

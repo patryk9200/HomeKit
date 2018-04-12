@@ -5,11 +5,15 @@ VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeKit.AccessoryProtocol", "HomeKit.AccessoryProtocol\HomeKit.AccessoryProtocol.csproj", "{A895E18B-01EB-4AEC-AFF4-236471A7EDB5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeKit.Console", "HomeKit.Console\HomeKit.Console.csproj", "{A072F45A-DFA5-4E9A-9939-B0463EEF4B21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{A072F45A-DFA5-4E9A-9939-B0463EEF4B21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Zeroconf", "Mono.Zeroconf\src\Mono.Zeroconf\Mono.Zeroconf.csproj", "{5CF88E3A-13DD-4114-BAD9-DA826946516F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Zeroconf.Providers.Bonjour", "Mono.Zeroconf\src\Mono.Zeroconf.Providers.Bonjour\Mono.Zeroconf.Providers.Bonjour.csproj", "{623325E2-5821-4701-A40C-3759097008DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eneter.SecureRemotePassword45", "Eneter.SecureRemotePassword\v1.0.0\src\Eneter.SecureRemotePassword\Eneter.SecureRemotePassword45.csproj", "{CDC9E8C7-3645-41A3-AA43-4F50F1DE1438}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThirdParty", "ThirdParty", "{E7BF92CA-76C8-46A3-99CF-BE82D0707969}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +37,18 @@ Global
 		{623325E2-5821-4701-A40C-3759097008DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{623325E2-5821-4701-A40C-3759097008DD}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{623325E2-5821-4701-A40C-3759097008DD}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{CDC9E8C7-3645-41A3-AA43-4F50F1DE1438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC9E8C7-3645-41A3-AA43-4F50F1DE1438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC9E8C7-3645-41A3-AA43-4F50F1DE1438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC9E8C7-3645-41A3-AA43-4F50F1DE1438}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5CF88E3A-13DD-4114-BAD9-DA826946516F} = {E7BF92CA-76C8-46A3-99CF-BE82D0707969}
+		{623325E2-5821-4701-A40C-3759097008DD} = {E7BF92CA-76C8-46A3-99CF-BE82D0707969}
+		{CDC9E8C7-3645-41A3-AA43-4F50F1DE1438} = {E7BF92CA-76C8-46A3-99CF-BE82D0707969}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF1555E3-EF5D-4EBC-8961-0B652B5BA02F}
