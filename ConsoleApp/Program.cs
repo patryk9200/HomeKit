@@ -7,6 +7,9 @@ namespace ConsoleApp
     {
         private const int PORT = 51820;
 
+        //use simple name, no spaces, no specials
+        private const string ServiceName = "HomeKitSharpBridge";
+
         static void Main(string[] args)
         {
 
@@ -14,72 +17,16 @@ namespace ConsoleApp
             StartBonjourService();
 
 
-            //var connString = $"tcp://0.0.0.0:51820";
-            //using (var server = new MessageWire.Host(connString))
-            //{
-            //    Console.WriteLine($"SRP Server Started");
+            var httpServer = new HttpServer();
 
-            //    server.MessageReceived += (s, e) =>
-            //    {
-            //        Console.WriteLine($"SRP Server message recieved...");
-
-            //        foreach (var frame in e.Message.Frames)
-            //        {
-            //            Console.WriteLine(frame.ConvertToString());
-            //        }
-            //        //Console.WriteLine($"SRP: {e.Message.Frames[0].ConvertToString()}")
-            //        //Assert.Equal("Hello, I'm the client.", e.Message.Frames[0].ConvertToString());
-            //        //Assert.Equal("This is my second line.", e.Message.Frames[1].ConvertToString());
-
-            //        //var replyData = new List<byte[]>();
-            //        //replyData.Add("Hello, I'm the server. You sent.".ConvertToBytes());
-            //        //replyData.AddRange(e.Message.Frames);
-            //        //server.Send(e.Message.ClientId, replyData);
-            //        //serverReceived = true;
-            //        //Assert.True(e.Message.Frames.Count == 2, "Server received message did not have 2 frames.");
-            //        //Assert.True(replyData.Count == 3, "Server message did not have 3 frames.");
-            //    };
-
-            //    //using (var client = new Client(connString))
-            //    //{
-            //    //    Console.WriteLine($"SRP Client Started");
-
-            //    //    client.MessageReceived += (s, e) =>
-            //    //    {
-            //    //        //clientReceived = true;
-            //    //        Console.WriteLine($"SRP Client message recieved...");
-            //    //    };
-
-            //    //    var clientMessageData = new List<byte[]>();
-            //    //    clientMessageData.Add("Hello, I'm the client.".ConvertToBytes());
-            //    //    clientMessageData.Add("This is my second line.".ConvertToBytes());
-            //    //    client.Send(clientMessageData);
-
-            //    //    //var count = 0;
-            //    //    //while (count < 20 && (!clientReceived || !serverReceived))
-            //    //    //{
-            //    //    //    Thread.Sleep(20);
-            //    //    //    count++;
-            //    //    //}
-            //    //}
-            //}
-
-
-
-
-
-
-            ////Creating server with specified port
-            var myServer = new SimpleHTTPServer(PORT);
-            ////Now it is running:
-            Console.WriteLine("Server is running on this port: " + myServer.Port.ToString());
+            var tcpServer = new TcpServer(PORT);
 
 
             Console.ReadLine();
 
             //Stop method should be called before exit.
-            myServer.Stop();
-
+            httpServer.Stop();
+            tcpServer.Stop();
 
         }
 
@@ -88,7 +35,7 @@ namespace ConsoleApp
         private static void StartBonjourService()
         {
             RegisterService service = new RegisterService();
-            service.Name = "HomKit C#";
+            service.Name = ServiceName;
             service.RegType = "_hap._tcp";
             service.ReplyDomain = "local.";
             service.Port = unchecked((short)PORT); //documentated work around
@@ -97,7 +44,7 @@ namespace ConsoleApp
             txt_record.Add("c#", "1");
             txt_record.Add("ff", "0");
             txt_record.Add("id", "22:32:43:54:54:01");
-            txt_record.Add("md", "HomKit C#");
+            txt_record.Add("md", ServiceName);
             txt_record.Add("pv", "1.0");
             txt_record.Add("s#", "1");
             txt_record.Add("sf", "1");
@@ -146,6 +93,57 @@ namespace ConsoleApp
 
     }
 }
+
+
+//var connString = $"tcp://0.0.0.0:51820";
+//using (var server = new MessageWire.Host(connString))
+//{
+//    Console.WriteLine($"SRP Server Started");
+
+//    server.MessageReceived += (s, e) =>
+//    {
+//        Console.WriteLine($"SRP Server message recieved...");
+
+//        foreach (var frame in e.Message.Frames)
+//        {
+//            Console.WriteLine(frame.ConvertToString());
+//        }
+//        //Console.WriteLine($"SRP: {e.Message.Frames[0].ConvertToString()}")
+//        //Assert.Equal("Hello, I'm the client.", e.Message.Frames[0].ConvertToString());
+//        //Assert.Equal("This is my second line.", e.Message.Frames[1].ConvertToString());
+
+//        //var replyData = new List<byte[]>();
+//        //replyData.Add("Hello, I'm the server. You sent.".ConvertToBytes());
+//        //replyData.AddRange(e.Message.Frames);
+//        //server.Send(e.Message.ClientId, replyData);
+//        //serverReceived = true;
+//        //Assert.True(e.Message.Frames.Count == 2, "Server received message did not have 2 frames.");
+//        //Assert.True(replyData.Count == 3, "Server message did not have 3 frames.");
+//    };
+
+//    //using (var client = new Client(connString))
+//    //{
+//    //    Console.WriteLine($"SRP Client Started");
+
+//    //    client.MessageReceived += (s, e) =>
+//    //    {
+//    //        //clientReceived = true;
+//    //        Console.WriteLine($"SRP Client message recieved...");
+//    //    };
+
+//    //    var clientMessageData = new List<byte[]>();
+//    //    clientMessageData.Add("Hello, I'm the client.".ConvertToBytes());
+//    //    clientMessageData.Add("This is my second line.".ConvertToBytes());
+//    //    client.Send(clientMessageData);
+
+//    //    //var count = 0;
+//    //    //while (count < 20 && (!clientReceived || !serverReceived))
+//    //    //{
+//    //    //    Thread.Sleep(20);
+//    //    //    count++;
+//    //    //}
+//    //}
+//}
 
 
 //private static async Task StartMultiCast()
