@@ -1,10 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConsoleApp.Controllers
@@ -19,7 +15,7 @@ namespace ConsoleApp.Controllers
         }
 
         [HttpPost("/pair-setup")]
-        public async Task<HttpResponseMessage> Pair()
+        public async void Pair()
         {
             if (Request.Body.CanSeek)
             {
@@ -58,20 +54,27 @@ namespace ConsoleApp.Controllers
 
             //var tlv = new StreamReader(Request.Body). .ReadToEnd();
 
-            byte[] m2Resposne = new byte[] { 0x07, 0x01, 0x02 };
+            byte[] m2Resposne = new byte[] {
+                0x06,0x01,0x02, //State M2
+                0x07, 0x01, 0x07 //Error BUSY
+            };
 
-            //return m2Resposne;
+            ////return m2Resposne;
 
-            HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
+            //HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
 
-            Stream stream = new MemoryStream(m2Resposne);
+            //Stream stream = new MemoryStream(m2Resposne);
 
-            result.Content = new StreamContent(stream);
-            result.Content.Headers.ContentType =
-                //new MediaTypeHeaderValue("application/octet-stream");
-                new MediaTypeHeaderValue("application/pairing+tlv8");
+            //result.Content = new StreamContent(stream);
+            //result.Content.Headers.ContentType =
+            //    //new MediaTypeHeaderValue("application/octet-stream");
+            //    new MediaTypeHeaderValue("application/pairing+tlv8");
 
-            return result;
+            Response.Headers.Add("Content-Type", "application/pairing+tlv8");
+            Response.Headers.Add("Content-Length", m2Resposne.Length.ToString());
+
+            await Response.Body.WriteAsync(m2Resposne, 0, m2Resposne.Length);
+
 
             //HttpResponseMessage h = new HttpResponseMessage();
             //h.Headers.Add("Content-Type","")

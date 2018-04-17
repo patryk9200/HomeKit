@@ -95,11 +95,16 @@ namespace ConsoleApp
                         byte[] responseData = new Byte[1024];
                         //// Read the first batch of the TcpServer response bytes.
                         Int32 bytesRecieved = ns.Read(responseData, 0, responseData.Length);
+
                         string responseAscii = System.Text.Encoding.ASCII.GetString(responseData, 0, bytesRecieved);
                         Console.WriteLine("** TCP RESPSONE **");
                         Console.WriteLine(responseAscii);
 
                         Console.WriteLine("");
+
+                        //outer stream resposne
+
+                        stream.Write(responseData, 0, bytesRecieved);
 
                         //stream.Close();
                         //tcpProxy.Close();
