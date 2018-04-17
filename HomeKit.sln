@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeKit.AccessoryProtocol", "HomeKit.AccessoryProtocol\HomeKit.AccessoryProtocol.csproj", "{A895E18B-01EB-4AEC-AFF4-236471A7EDB5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{A072F45A-DFA5-4E9A-9939-B0463EEF4B21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Zeroconf", "Mono.Zeroconf\src\Mono.Zeroconf\Mono.Zeroconf.csproj", "{5CF88E3A-13DD-4114-BAD9-DA826946516F}"
@@ -15,16 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eneter.SecureRemotePassword
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThirdParty", "ThirdParty", "{E7BF92CA-76C8-46A3-99CF-BE82D0707969}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeKit.Protocol", "HomeKit.Protocol\HomeKit.Protocol.csproj", "{CB0C459F-4731-41C7-8F9D-235C16488FEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A895E18B-01EB-4AEC-AFF4-236471A7EDB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A895E18B-01EB-4AEC-AFF4-236471A7EDB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A895E18B-01EB-4AEC-AFF4-236471A7EDB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A895E18B-01EB-4AEC-AFF4-236471A7EDB5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A072F45A-DFA5-4E9A-9939-B0463EEF4B21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A072F45A-DFA5-4E9A-9939-B0463EEF4B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A072F45A-DFA5-4E9A-9939-B0463EEF4B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,6 +37,10 @@ Global
 		{CDC9E8C7-3645-41A3-AA43-4F50F1DE1438}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDC9E8C7-3645-41A3-AA43-4F50F1DE1438}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDC9E8C7-3645-41A3-AA43-4F50F1DE1438}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB0C459F-4731-41C7-8F9D-235C16488FEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB0C459F-4731-41C7-8F9D-235C16488FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB0C459F-4731-41C7-8F9D-235C16488FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB0C459F-4731-41C7-8F9D-235C16488FEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
