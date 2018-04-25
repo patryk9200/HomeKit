@@ -14,10 +14,12 @@
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.3" />
+    <PackageReference Include="System.Security.Cryptography.Encoding" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Eneter.SecureRemotePassword\v1.0.0\src\Eneter.SecureRemotePassword\Eneter.SecureRemotePassword45.csproj" />
+    <ProjectReference Include="..\HomeKit.Protocol\HomeKit.Protocol.csproj" />
     <ProjectReference Include="..\Mono.Zeroconf\src\Mono.Zeroconf\Mono.Zeroconf.csproj" />
   </ItemGroup>
 

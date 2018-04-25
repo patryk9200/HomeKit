@@ -6,7 +6,7 @@
 
         public class kTLVType_Method
         {
-            public int Type => 0x00;
+            public static byte Type => 0x00;
 
             int _value;
             public kTLVType_Method(int value)
@@ -19,7 +19,9 @@
 
         public class kTLVType_Identifier
         {
-            string _value; public int Type => 0x01;
+            public static byte Type => 0x01;
+
+            string _value;
 
             public kTLVType_Identifier(string value)
             {
@@ -31,7 +33,9 @@
 
         public class kTLVType_Salt
         {
-            byte[] _value; public int Type => 0x02;
+            public static byte Type => 0x02;
+
+            byte[] _value;
 
             public kTLVType_Salt(byte[] value)
             {
@@ -43,7 +47,9 @@
 
         public class kTLVType_PublicKey
         {
-            byte[] _value; public int Type => 0x03;
+            public static byte Type => 0x03;
+
+            byte[] _value;
 
             public kTLVType_PublicKey(byte[] value)
             {
@@ -55,7 +61,9 @@
 
         public class kTLVType_Proof
         {
-            byte[] _value; public int Type => 0x04;
+            public static byte Type => 0x04;
+
+            byte[] _value;
 
             public kTLVType_Proof(byte[] value)
             {
@@ -67,7 +75,9 @@
 
         public class kTLVType_EncryptedData
         {
-            byte[] _value; public int Type => 0x05;
+            public static byte Type => 0x05;
+
+            byte[] _value;
 
             public kTLVType_EncryptedData(byte[] value)
             {
@@ -80,7 +90,9 @@
 
         public class kTLVType_State
         {
-            int _value; public int Type => 0x06;
+            public static byte Type => 0x06;
+
+            int _value;
 
             public kTLVType_State(int value)
             {

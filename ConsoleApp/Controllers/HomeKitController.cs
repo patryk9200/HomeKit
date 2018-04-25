@@ -1,7 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using Eneter.SecureRemotePassword;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.Kestrel.Internal.System.Collections.Sequences;
+
+//using System.Security.Cryptography .Asn1;
+using static HomeKit.Protocol.TLV.Values;
 
 namespace ConsoleApp.Controllers
 {
@@ -46,17 +51,42 @@ namespace ConsoleApp.Controllers
 
                 string hex = BitConverter.ToString(contentBytes);
 
-                var tlv = new Mono.Security.ASN1Element(chunks[1], 0); //this works but you need to make sure the bytes are split up BEFORE inputting here..whoop!
+                //var tlv = new Mono.Security.ASN1Element(chunks[1], 0); //this works but you need to make sure the bytes are split up BEFORE inputting here..whoop!
 
-                var tlvString = tlv.ToString();
+
+                var g = new System.Security.Cryptography.AsnEncodedData(contentBytes);
+
+                //AsnWriter 
+
+                //var tlvString = tlv.ToString();
             }
 
 
             //var tlv = new StreamReader(Request.Body). .ReadToEnd();
 
+            //byte[] m2Resposne = new byte[] {
+            //    0x06,0x01,0x02, //State M2
+            //    0x07, 0x01, 0x07, //Error BUSY
+            //};
+
+
+            //var salt = SRP.s();
+
+            //ArrayList<byte> saltTlv = new ArrayList<byte>();
+
+            //saltTlv.Add(kTLVType_Salt.Type);
+            //saltTlv.Add((byte)saltTlv.Length);
+            //foreach (var b in salt)
+            //{
+            //    saltTlv.Add(b);
+            //}
+
+            //var bytes = (byte[])saltTlv.ToArray(typeof(byte));
+
             byte[] m2Resposne = new byte[] {
-                0x06,0x01,0x02, //State M2
-                0x07, 0x01, 0x07 //Error BUSY
+                0x06 ,0x01,0x02, //State M2
+                0x03, 0x01, 0x07, //Public Key
+                0x02 //Salt
             };
 
             ////return m2Resposne;
@@ -84,6 +114,32 @@ namespace ConsoleApp.Controllers
             //return contentBytes; // $"Host: {Host} ";
         }
 
+
+        private void M1M2()
+        {
+
+            var salt = SRP.s();
+
+            ArrayList<byte> saltTlv = new ArrayList<byte>();
+
+            saltTlv.Add(kTLVType_Salt.Type);
+            saltTlv.Add((byte)saltTlv.Length);
+            foreach (var b in salt)
+            {
+                saltTlv.Add(b);
+            }
+
+
+
+
+
+
+
+
+
+
+
+        }
         //[HttpPost("/pair-verify")]
         //public async Task<string> PairVerify([FromHeader]string Host, [FromBody]byte[] content)
         //{
