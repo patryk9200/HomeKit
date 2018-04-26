@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -53,70 +54,72 @@ namespace ConsoleApp
 
             while (true)
             {
-                try
-                {
-                    TcpClient client = _TcpListener.AcceptTcpClient();
+                //try
+                //{
+                TcpClient client = _TcpListener.AcceptTcpClient();
 
-                    NetworkStream stream = client.GetStream();
-
-
-                    int i;
-                    while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
-                    {
-
-                        //debug 
-
-                        var ascii = Encoding.ASCII.GetString(bytes, 0, i);
-                        Console.WriteLine("** TCP REQUEST ** ");
-                        Console.WriteLine("{0}", ascii);
+                NetworkStream stream = client.GetStream();
 
 
-                        //TODO: Detect and decrypt stage here then pass into proxy
-
-                        TcpClient tcpProxy = new TcpClient("localhost", 5000);
-
-                        //ascii = ascii.Replace($"Host: {_bonjourServiceName}._hap._tcp.local", "Host: 127.0.0.1:5000"); //why does Apple send the host like this?
-                        //OMG my regex sux.. Can you fix this please. Thanks.
-                        //string t = Regex.Replace(ascii, "^(Host:).*", "Host: 127.0.0.1:5000" + Environment.NewLine);
-
-
-                        //byte[] request = Encoding.ASCII.GetBytes(ascii);
-
-                        NetworkStream ns = tcpProxy.GetStream();
-                        ns.Write(bytes, 0, i);
-                        //ns.Write(request, 0, request.Length);
-
-                        Console.WriteLine("");
-
-
-
-                        // String to store the response ASCII representation.
-                        //string responseData = String.Empty;
-                        byte[] responseData = new Byte[1024];
-                        //// Read the first batch of the TcpServer response bytes.
-                        Int32 bytesRecieved = ns.Read(responseData, 0, responseData.Length);
-
-                        string responseAscii = System.Text.Encoding.ASCII.GetString(responseData, 0, bytesRecieved);
-                        Console.WriteLine("** TCP RESPSONE **");
-                        Console.WriteLine(responseAscii);
-
-                        Console.WriteLine("");
-
-                        //outer stream resposne
-
-                        stream.Write(responseData, 0, bytesRecieved);
-
-                        //stream.Close();
-                        //tcpProxy.Close();
-
-                    }
-
-                    client.Close();
-                }
-                catch (Exception ex)
+                int i;
+                while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
                 {
 
+                    //debug 
+
+                    var ascii = Encoding.ASCII.GetString(bytes, 0, i);
+                    Console.WriteLine("** TCP REQUEST ** ");
+                    Console.WriteLine("{0}", ascii);
+
+
+                    //TODO: Detect and decrypt stage here then pass into proxy
+
+                    TcpClient tcpProxy = new TcpClient("localhost", 5000);
+
+                    //ascii = ascii.Replace($"Host: {_bonjourServiceName}._hap._tcp.local", "Host: 127.0.0.1:5000"); //why does Apple send the host like this?
+                    //OMG my regex sux.. Can you fix this please. Thanks.
+                    //string t = Regex.Replace(ascii, "^(Host:).*", "Host: 127.0.0.1:5000" + Environment.NewLine);
+
+
+                    //byte[] request = Encoding.ASCII.GetBytes(ascii);
+
+                    NetworkStream ns = tcpProxy.GetStream();
+                    ns.Write(bytes, 0, i);
+                    //ns.Write(request, 0, request.Length);
+
+                    Console.WriteLine("");
+
+
+
+                    // String to store the response ASCII representation.
+                    //string responseData = String.Empty;
+                    byte[] responseData = new Byte[1024];
+
+                    //// Read the first batch of the TcpServer response bytes.
+                    Int32 bytesRecieved = ns.Read(responseData, 0, responseData.Length);
+
+                    var streamToIphone = responseData.Take(bytesRecieved).ToArray();
+
+                    string responseAscii = System.Text.Encoding.ASCII.GetString(streamToIphone); // responseData, 0, bytesRecieved);
+                    Console.WriteLine("** TCP RESPSONE **");
+                    Console.WriteLine(responseAscii);
+
+                    Console.WriteLine("");
+
+                    stream.Write(streamToIphone, 0, streamToIphone.Length);
+
+                    //stream.Close();
+                    //tcpProxy.Close();
+
                 }
+
+                client.Close();
+
+                //}
+                //catch (Exception ex)
+                //{
+                //
+                //}
             }
 
 

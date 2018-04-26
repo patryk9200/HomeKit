@@ -3,7 +3,6 @@
     public class Values
     {
 
-
         public class kTLVType_Method
         {
             public static byte Type => 0x00;
@@ -104,7 +103,9 @@
 
         public class kTLVType_Error
         {
-            int _value; public int Type => 0x07;
+            public static byte Type => 0x07;
+
+            int _value;
 
             public kTLVType_Error(int value)
             {
@@ -116,7 +117,9 @@
 
         public class kTLVType_RetryDelay
         {
-            int _value; public int Type => 0x08;
+            public static byte Type => 0x08;
+
+            int _value;
 
             public kTLVType_RetryDelay(int value)
             {
@@ -128,7 +131,9 @@
 
         public class kTLVType_Certificate
         {
-            byte[] _value; public int Type => 0x09;
+            public static byte Type => 0x09;
+
+            byte[] _value;
 
             public kTLVType_Certificate(byte[] value)
             {
@@ -140,7 +145,9 @@
 
         public class kTLVType_Signature
         {
-            byte[] _value; public int Type => 0x0A;
+            public static byte Type => 0x0A;
+
+            byte[] _value;
 
             public kTLVType_Signature(byte[] value)
             {
@@ -152,7 +159,9 @@
 
         public class kTLVType_Permissions
         {
-            int _value; public int Type => 0x0B;
+            public static byte Type => 0x0B;
+
+            int _value;
 
             public kTLVType_Permissions(int value)
             {
@@ -164,7 +173,7 @@
 
         public class kTLVType_FragmentData
         {
-            public int Type => 0x0C;
+            public static byte Type => 0x0C;
 
             byte[] _value;
             public kTLVType_FragmentData(byte[] value)
@@ -178,7 +187,10 @@
 
         public class kTLVType_FragmentLast
         {
-            byte[] _value; public int Type => 0x0D;
+            public static byte Type => 0x0D;
+
+            byte[] _value;
+
 
             public kTLVType_FragmentLast(byte[] value)
             {
@@ -190,7 +202,7 @@
 
         public class kTLVType_Seperator
         {
-            public int Type => 0xFF;
+            public static byte Type => 0xFF;
             public char Value => '\0';
 
         }
